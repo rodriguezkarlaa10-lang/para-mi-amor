@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -30,7 +34,7 @@ body {
 .carta {
     width: 100%;
     max-width: 650px;
-    background: rgba(255,255,255,0.88);
+    background: rgba(255,255,255,0.90);
     border-radius: 30px;
     padding: 35px 25px;
     text-align: center;
@@ -48,6 +52,11 @@ h1 {
     font-size: 38px;
     margin: 10px 0;
     color: #c34d7c;
+}
+
+h2 {
+    color: #c34d7c;
+    margin-top: 35px;
 }
 
 .subtitulo {
@@ -76,26 +85,7 @@ h1 {
     font-size: 21px;
 }
 
-.cancion {
-    margin: 30px 0;
-}
-
-.cancion-titulo {
-    font-size: 21px;
-    color: #c34d7c;
-    margin-bottom: 15px;
-}
-
-iframe {
-    width: 100%;
-    max-width: 560px;
-    height: 315px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(120,50,90,.18);
-}
-
-button {
+.boton {
     border: none;
     background: linear-gradient(135deg, #d85b91, #c34d7c);
     color: white;
@@ -104,14 +94,47 @@ button {
     font-size: 17px;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(195,77,124,.25);
+    margin: 10px;
 }
 
-#sorpresa {
+.boton:active {
+    transform: scale(.96);
+}
+
+#cartaCompleta {
     display: none;
-    margin-top: 25px;
-    font-size: 20px;
-    line-height: 1.7;
     animation: aparecer 1s ease;
+}
+
+.seccion {
+    margin-top: 35px;
+    padding: 22px;
+    border-radius: 22px;
+    background: rgba(255,240,246,.75);
+}
+
+.seccion p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.final {
+    margin-top: 40px;
+    font-size: 24px;
+    color: #c34d7c;
+    font-weight: bold;
+}
+
+.musica {
+    margin-top: 30px;
+}
+
+.musica p {
+    font-size: 18px;
+}
+
+#activarMusica {
+    display: none;
 }
 
 .corazones {
@@ -120,6 +143,7 @@ button {
     font-size: 25px;
     animation: subir 6s linear infinite;
     pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes aparecer {
@@ -161,92 +185,231 @@ button {
 <body>
 
 <div class="pantalla">
-    <div class="carta">
 
-        <div class="corazon">💗</div>
+<div class="carta">
 
-        <h1>Mi amor por ti</h1>
+<div class="corazon">💗</div>
 
-        <div class="subtitulo">
-            EDICIÓN ESPECIAL
-        </div>
+<h1>Mi amor por ti</h1>
 
-        <div class="fecha">
-            💕 19 de junio 💕
-        </div>
+<div class="subtitulo">
+EDICIÓN ESPECIAL
+</div>
 
-        <div class="mensaje">
-            Para mi Bae, Heber 💗
-            <br><br>
+<div class="fecha">
+💕 19 de junio 💕
+</div>
 
-            Desde que llegaste a mi vida, muchas cosas
-            se volvieron más bonitas. Gracias por cada
-            momento, cada sonrisa y cada recuerdo que
-            hemos creado juntos.
-        </div>
+<div class="mensaje">
 
-        <div class="frase">
-            “Si pudiera elegir una y otra vez,
-            siempre te elegiría a ti.” 💕
-        </div>
+Para mi Bae, Heber 💗
 
-        <div class="cancion">
-            <div class="cancion-titulo">
-                🎵 Nuestra canción 🎵
-                <br>
-                <small>Mi Amor Por Ti — Edición Especial</small>
-            </div>
+<br><br>
 
-            <iframe
-                src="https://www.youtube.com/embed/nKpTSuzNQxE"
-                title="Mi Amor Por Ti - Edición Especial"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-            </iframe>
-        </div>
+Hay personas que llegan a nuestra vida
+sin avisar y terminan convirtiéndose
+en una de las partes más bonitas de ella.
 
-        <button onclick="mostrarSorpresa()">
-            💌 Tengo algo para ti
-        </button>
+Y tú eres eso para mí.
 
-        <div id="sorpresa">
-            Heber, quiero que sepas que eres una persona
-            muy especial para mí. ❤️
-            <br><br>
+</div>
 
-            Gracias por estar conmigo, por hacerme sonreír
-            y por formar parte de mi vida.
-            <br><br>
+<div class="frase">
+“Ni la distancia puede hacerme sentir
+que estás lejos de mi corazón.” 💕
+</div>
 
-            Te quiero muchísimo, Bae. 💗
-        </div>
+<div class="musica">
 
-    </div>
+<p>🎵 Nuestra canción 🎵</p>
+
+<button class="boton" id="activarMusica" onclick="activarCancion()">
+💗 Activar nuestra canción
+</button>
+
+<iframe
+id="musica"
+width="1"
+height="1"
+src="https://www.youtube.com/embed/nKpTSuzNQxE?autoplay=1&loop=1&playlist=nKpTSuzNQxE"
+title="Nuestra canción"
+allow="autoplay; encrypted-media">
+</iframe>
+
+</div>
+
+<br>
+
+<button class="boton" onclick="mostrarCarta()">
+💌 Tengo algo para ti
+</button>
+
+<div id="cartaCompleta">
+
+<div class="seccion">
+
+<h2>💌 Para ti, Bae</h2>
+
+<p>
+Heber, quiero que sepas que eres una persona
+muy especial para mí. ❤️
+</p>
+
+<p>
+Aunque muchas veces nos toque estar lejos,
+hay algo que la distancia nunca ha podido
+cambiar: todo lo que siento por ti.
+</p>
+
+<p>
+No importa cuántos kilómetros haya entre nosotros,
+porque de alguna manera siempre encuentro
+la forma de sentirte cerquita de mi corazón.
+</p>
+
+</div>
+
+<div class="seccion">
+
+<h2>🌎 A pesar de la distancia</h2>
+
+<p>
+Sé que una relación a distancia no siempre es fácil.
+Hay días en los que quisiera poder estar contigo,
+verte, abrazarte y simplemente pasar un rato
+a tu lado.
+</p>
+
+<p>
+Pero incluso estando lejos, cada mensaje,
+cada llamada, cada palabra bonita y cada momento
+que compartimos hacen que todo valga la pena.
+</p>
+
+<p>
+Porque si eres tú, la distancia se vuelve
+solamente un pequeño obstáculo entre nosotros.
+</p>
+
+</div>
+
+<div class="seccion">
+
+<h2>🫂 Algún día...</h2>
+
+<p>
+Algún día ya no tendremos que despedirnos
+por una pantalla.
+</p>
+
+<p>
+Algún día podremos vernos frente a frente,
+abrazarnos muchísimo y recuperar todos
+esos abrazos que la distancia nos ha quitado.
+</p>
+
+<p>
+Y cuando llegue ese día, quiero acordarme
+de todo lo que tuvimos que esperar para poder
+estar juntos.
+</p>
+
+</div>
+
+<div class="seccion">
+
+<h2>💕 Lo que quiero que recuerdes</h2>
+
+<p>
+Quiero que recuerdes que te quiero muchísimo.
+</p>
+
+<p>
+Que eres importante para mí.
+Que me haces sonreír.
+Que me encanta tenerte en mi vida.
+Y que, aunque no pueda estar físicamente
+a tu lado todos los días, mi cariño por ti
+siempre está presente.
+</p>
+
+</div>
+
+<div class="frase">
+
+“Quizá hoy nos separen kilómetros,
+pero algún día esos kilómetros
+serán solamente parte de nuestra historia.” 💗
+
+</div>
+
+<div class="final">
+
+Heber, te quiero muchísimo. 💗
+
+<br><br>
+
+Siempre tú, Bae. 🥹❤️
+
+<br><br>
+
+19 de junio 💕
+</div>
+
+</div>
+
+</div>
 </div>
 
 <script>
-function mostrarSorpresa() {
-    document.getElementById("sorpresa").style.display = "block";
+
+function mostrarCarta() {
+
+    document.getElementById("cartaCompleta").style.display = "block";
+
+    setTimeout(function() {
+        document.getElementById("cartaCompleta").scrollIntoView({
+            behavior: "smooth"
+        });
+    }, 100);
+
+}
+
+function activarCancion() {
+
+    const musica = document.getElementById("musica");
+
+    musica.src =
+    "https://www.youtube.com/embed/nKpTSuzNQxE?autoplay=1&loop=1&playlist=nKpTSuzNQxE";
+
+    document.getElementById("activarMusica").style.display = "none";
+
 }
 
 function crearCorazon() {
+
     const corazon = document.createElement("div");
 
     corazon.className = "corazones";
     corazon.innerHTML = "💗";
 
     corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.animationDuration = (4 + Math.random() * 4) + "s";
-    corazon.style.fontSize = (15 + Math.random() * 20) + "px";
+    corazon.style.animationDuration =
+    (4 + Math.random() * 4) + "s";
+
+    corazon.style.fontSize =
+    (15 + Math.random() * 20) + "px";
 
     document.body.appendChild(corazon);
 
-    setTimeout(() => {
+    setTimeout(function() {
         corazon.remove();
     }, 8000);
+
 }
 
 setInterval(crearCorazon, 700);
+
 </script>
 
 </body>
