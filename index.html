@@ -30,7 +30,7 @@ body {
 .carta {
     width: 100%;
     max-width: 650px;
-    background: rgba(255,255,255,0.82);
+    background: rgba(255,255,255,0.88);
     border-radius: 30px;
     padding: 35px 25px;
     text-align: center;
@@ -78,4 +78,364 @@ h1 {
 
 button {
     border: none;
-    background: linear-gradient(135deg, #d
+    background: linear-gradient(135deg, #d85b91, #c34d7c);
+    color: white;
+    padding: 15px 28px;
+    border-radius: 30px;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(195,77,124,.25);
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+#sorpresa {
+    display: none;
+    margin-top: 25px;
+    font-size: 20px;
+    line-height: 1.7;
+    animation: aparecer 1s ease;
+}
+
+.corazones {
+    position: fixed;
+    bottom: -30px;
+    font-size: 25px;
+    animation: subir 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes subir {
+    from {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="pantalla">
+    <div class="carta">
+
+        <div class="corazon">💗</div>
+
+        <h1>Mi amor por ti</h1>
+
+        <div class="subtitulo">
+            EDICIÓN ESPECIAL
+        </div>
+
+        <div class="fecha">
+            💕 19 de junio 💕
+        </div>
+
+        <div class="mensaje">
+            Para mi Bae, Heber 💗
+            <br><br>
+
+            Desde que llegaste a mi vida, muchas cosas
+            se volvieron más bonitas. Gracias por cada
+            momento, cada sonrisa y cada recuerdo que
+            hemos creado juntos.
+        </div>
+
+        <div class="frase">
+            “Si pudiera elegir una y otra vez,
+            siempre te elegiría a ti.” 💕
+        </div>
+
+        <button onclick="mostrarSorpresa()">
+            💌 Tengo algo para ti
+        </button>
+
+        <div id="sorpresa">
+            Heber, quiero que sepas que eres una persona
+            muy especial para mí. ❤️
+            <br><br>
+            Gracias por estar conmigo, por hacerme sonreír
+            y por formar parte de mi vida.
+            <br><br>
+            Te quiero muchísimo, Bae. 💗
+        </div>
+
+    </div>
+</div>
+
+<script>
+function mostrarSorpresa() {
+    document.getElementById("sorpresa").style.display = "block";
+}
+
+function crearCorazon() {
+    const corazon = document.createElement("div");
+
+    corazon.className = "corazones";
+    corazon.innerHTML = "💗";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.animationDuration = (4 + Math.random() * 4) + "s";
+    corazon.style.fontSize = (15 + Math.random() * 20) + "px";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 8000);
+}
+
+setInterval(crearCorazon, 700);
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi amor por ti 💗</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #ffd6e7, #fff1f7, #f8d9ff);
+    color: #5b2944;
+    overflow-x: hidden;
+}
+
+.pantalla {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.carta {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255,255,255,0.88);
+    border-radius: 30px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(120,50,90,.2);
+    backdrop-filter: blur(8px);
+    animation: aparecer 1.5s ease;
+}
+
+.corazon {
+    font-size: 55px;
+    animation: latido 1.4s infinite;
+}
+
+h1 {
+    font-size: 38px;
+    margin: 10px 0;
+    color: #c34d7c;
+}
+
+.subtitulo {
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #9c5476;
+}
+
+.fecha {
+    margin: 20px 0;
+    font-size: 17px;
+}
+
+.mensaje {
+    font-size: 19px;
+    line-height: 1.8;
+    margin-top: 25px;
+}
+
+.frase {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff0f6;
+    font-style: italic;
+    font-size: 21px;
+}
+
+button {
+    border: none;
+    background: linear-gradient(135deg, #d85b91, #c34d7c);
+    color: white;
+    padding: 15px 28px;
+    border-radius: 30px;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(195,77,124,.25);
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+#sorpresa {
+    display: none;
+    margin-top: 25px;
+    font-size: 20px;
+    line-height: 1.7;
+    animation: aparecer 1s ease;
+}
+
+.corazones {
+    position: fixed;
+    bottom: -30px;
+    font-size: 25px;
+    animation: subir 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes subir {
+    from {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="pantalla">
+    <div class="carta">
+
+        <div class="corazon">💗</div>
+
+        <h1>Mi amor por ti</h1>
+
+        <div class="subtitulo">
+            EDICIÓN ESPECIAL
+        </div>
+
+        <div class="fecha">
+            💕 19 de junio 💕
+        </div>
+
+        <div class="mensaje">
+            Para mi Bae, Heber 💗
+            <br><br>
+
+            Desde que llegaste a mi vida, muchas cosas
+            se volvieron más bonitas. Gracias por cada
+            momento, cada sonrisa y cada recuerdo que
+            hemos creado juntos.
+        </div>
+
+        <div class="frase">
+            “Si pudiera elegir una y otra vez,
+            siempre te elegiría a ti.” 💕
+        </div>
+
+        <button onclick="mostrarSorpresa()">
+            💌 Tengo algo para ti
+        </button>
+
+        <div id="sorpresa">
+            Heber, quiero que sepas que eres una persona
+            muy especial para mí. ❤️
+            <br><br>
+            Gracias por estar conmigo, por hacerme sonreír
+            y por formar parte de mi vida.
+            <br><br>
+            Te quiero muchísimo, Bae. 💗
+        </div>
+
+    </div>
+</div>
+
+<script>
+function mostrarSorpresa() {
+    document.getElementById("sorpresa").style.display = "block";
+}
+
+function crearCorazon() {
+    const corazon = document.createElement("div");
+
+    corazon.className = "corazones";
+    corazon.innerHTML = "💗";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.animationDuration = (4 + Math.random() * 4) + "s";
+    corazon.style.fontSize = (15 + Math.random() * 20) + "px";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 8000);
+}
+
+setInterval(crearCorazon, 700);
+</script>
+
+</body>
+</html>
