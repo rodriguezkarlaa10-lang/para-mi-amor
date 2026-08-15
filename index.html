@@ -3,412 +3,685 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi amor por ti 💗</title>
+
+<title>Para mi amor ♡</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+  margin:0;
+  font-family:Georgia,serif;
+  background:#fff0f5;
+  color:#5b3042;
+  overflow-x:hidden;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Georgia, serif;
-    background: linear-gradient(135deg, #ffd6e7, #fff1f7, #f8d9ff);
-    color: #5b2944;
-    overflow-x: hidden;
+.page{
+  min-height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  position:relative;
 }
 
-.pantalla {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
+.page.active{
+  display:flex;
 }
 
-.carta {
-    width: 100%;
-    max-width: 650px;
-    background: rgba(255,255,255,0.90);
-    border-radius: 30px;
-    padding: 35px 25px;
-    text-align: center;
-    box-shadow: 0 15px 50px rgba(120,50,90,.2);
-    backdrop-filter: blur(8px);
-    animation: aparecer 1.5s ease;
+.card{
+  max-width:760px;
+  width:100%;
+  background:rgba(255,255,255,.90);
+  padding:38px 28px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 15px 45px #d89aaa55;
+  animation:up .7s ease;
 }
 
-.corazon {
-    font-size: 55px;
-    animation: latido 1.4s infinite;
+h1{
+  font-size:clamp(2.2rem,8vw,4.5rem);
+  margin:8px 0 18px;
+  color:#a63d62;
 }
 
-h1 {
-    font-size: 38px;
-    margin: 10px 0;
-    color: #c34d7c;
+h2{
+  font-size:2rem;
+  color:#a63d62;
 }
 
-h2 {
-    color: #c34d7c;
-    margin-top: 35px;
+p{
+  font-size:1.15rem;
+  line-height:1.8;
 }
 
-.subtitulo {
-    font-size: 18px;
-    letter-spacing: 2px;
-    color: #9c5476;
+.heart{
+  font-size:4rem;
+  animation:pulse 1.5s infinite;
 }
 
-.fecha {
-    margin: 20px 0;
-    font-size: 17px;
+button{
+  border:0;
+  border-radius:999px;
+  padding:14px 24px;
+  margin:8px;
+  background:#d96b91;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 7px 18px #b94e7350;
+  transition:.2s;
 }
 
-.mensaje {
-    font-size: 19px;
-    line-height: 1.8;
-    margin-top: 25px;
+button:hover{
+  transform:translateY(-2px);
 }
 
-.frase {
-    margin: 30px 0;
-    padding: 20px;
-    border-radius: 20px;
-    background: #fff0f6;
-    font-style: italic;
-    font-size: 21px;
+.soft{
+  background:#f4b6c8;
+  color:#71364c;
 }
 
-.boton {
-    border: none;
-    background: linear-gradient(135deg, #d85b91, #c34d7c);
-    color: white;
-    padding: 15px 28px;
-    border-radius: 30px;
-    font-size: 17px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(195,77,124,.25);
-    margin: 10px;
+ul{
+  padding:0;
+  list-style:none;
+  text-align:left;
+  max-width:580px;
+  margin:20px auto;
 }
 
-.boton:active {
-    transform: scale(.96);
+li{
+  background:#fff5f8;
+  margin:10px 0;
+  padding:13px 16px;
+  border-radius:16px;
 }
 
-#cartaCompleta {
-    display: none;
-    animation: aparecer 1s ease;
+.quote{
+  font-size:1.35rem;
+  font-style:italic;
+  color:#9a526c;
 }
 
-.seccion {
-    margin-top: 35px;
-    padding: 22px;
-    border-radius: 22px;
-    background: rgba(255,240,246,.75);
+.counter{
+  font-size:1.4rem;
+  font-weight:bold;
+  color:#a63d62;
 }
 
-.seccion p {
-    font-size: 18px;
-    line-height: 1.8;
+.final{
+  font-size:1.7rem;
 }
 
-.final {
-    margin-top: 40px;
-    font-size: 24px;
-    color: #c34d7c;
-    font-weight: bold;
+.music{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:1000;
+  padding:10px 16px;
+  margin:0;
+  font-size:.9rem;
+  background:#a63d62;
 }
 
-.musica {
-    margin-top: 30px;
+#hearts span{
+  position:fixed;
+  top:-30px;
+  animation:fall linear forwards;
+  pointer-events:none;
+  font-size:22px;
+  z-index:999;
 }
 
-.musica p {
-    font-size: 18px;
+@keyframes up{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-#activarMusica {
-    display: none;
+@keyframes pulse{
+  50%{
+    transform:scale(1.15);
+  }
 }
 
-.corazones {
-    position: fixed;
-    bottom: -30px;
-    font-size: 25px;
-    animation: subir 6s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes latido {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-@keyframes subir {
-    from {
-        transform: translateY(0);
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="pantalla">
+<div id="hearts"></div>
 
-<div class="carta">
+<audio id="music" loop preload="auto">
+  <source src="cancion.mp3" type="audio/mpeg">
+</audio>
 
-<div class="corazon">💗</div>
-
-<h1>Mi amor por ti</h1>
-
-<div class="subtitulo">
-EDICIÓN ESPECIAL
-</div>
-
-<div class="fecha">
-💕 19 de junio 💕
-</div>
-
-<div class="mensaje">
-
-Para mi Bae, Heber 💗
-
-<br><br>
-
-Hay personas que llegan a nuestra vida
-sin avisar y terminan convirtiéndose
-en una de las partes más bonitas de ella.
-
-Y tú eres eso para mí.
-
-</div>
-
-<div class="frase">
-“Ni la distancia puede hacerme sentir
-que estás lejos de mi corazón.” 💕
-</div>
-
-<div class="musica">
-
-<p>🎵 Nuestra canción 🎵</p>
-
-<button class="boton" id="activarMusica" onclick="activarCancion()">
-💗 Activar nuestra canción
+<button class="music" onclick="toggleMusic()" id="musicButton">
+  🎵 Música
 </button>
 
-<iframe
-id="musica"
-width="1"
-height="1"
-src="https://www.youtube.com/embed/nKpTSuzNQxE?autoplay=1&loop=1&playlist=nKpTSuzNQxE"
-title="Nuestra canción"
-allow="autoplay; encrypted-media">
-</iframe>
 
-</div>
+<!-- PORTADA -->
 
-<br>
+<section class="page active">
 
-<button class="boton" onclick="mostrarCarta()">
-💌 Tengo algo para ti
-</button>
+<div class="card">
 
-<div id="cartaCompleta">
+<div class="heart">♡</div>
 
-<div class="seccion">
-
-<h2>💌 Para ti, Bae</h2>
+<h1>
+Para el amor de mi vida
+</h1>
 
 <p>
-Heber, quiero que sepas que eres una persona
-muy especial para mí. ❤️
+Una pequeña sorpresa hecha con muchísimo amor,
+especialmente para ti.
 </p>
 
+<p class="counter">
+Nuestro 2.º mes • 19 de agosto ♡
+</p>
+
+<button onclick="startEverything(); next()">
+Abrir mi regalo 💌
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CARTA -->
+
+<section class="page">
+
+<div class="card">
+
+<h2>
+Mi carta para ti 💌
+</h2>
+
 <p>
-Aunque muchas veces nos toque estar lejos,
-hay algo que la distancia nunca ha podido
+Mi amor, hoy quiero recordarte lo muchísimo que
+significas para mí. Aunque exista distancia entre
+nosotros, hay algo que ninguna distancia puede
 cambiar: todo lo que siento por ti.
 </p>
 
 <p>
-No importa cuántos kilómetros haya entre nosotros,
-porque de alguna manera siempre encuentro
-la forma de sentirte cerquita de mi corazón.
-</p>
-
-</div>
-
-<div class="seccion">
-
-<h2>🌎 A pesar de la distancia</h2>
-
-<p>
-Sé que una relación a distancia no siempre es fácil.
-Hay días en los que quisiera poder estar contigo,
-verte, abrazarte y simplemente pasar un rato
-a tu lado.
+Estos dos meses han sido una parte preciosa de mi vida.
+Me encanta tenerte, conocerte cada día un poquito más
+y descubrir todas esas pequeñas cosas que hacen que
+mi corazón te elija una y otra vez.
 </p>
 
 <p>
-Pero incluso estando lejos, cada mensaje,
-cada llamada, cada palabra bonita y cada momento
-que compartimos hacen que todo valga la pena.
+Ojalá pudiera estar contigo ahora mismo, abrazarte
+fuerte y decirte todo esto mirándote a los ojos.
+Mientras llega ese momento, quiero que esta pequeña
+página sea un pedacito de mi cariño para ti.
+</p>
+
+<button onclick="next()">
+Seguir leyendo ♡
+</button>
+
+</div>
+
+</section>
+
+
+<!-- COSAS QUE AMO -->
+
+<section class="page">
+
+<div class="card">
+
+<h2>
+Cosas que amo de ti 🌷
+</h2>
+
+<ul>
+
+<li>
+♡ La forma en que haces que mis días sean más bonitos.
+</li>
+
+<li>
+♡ Tu manera de hacerme sonreír incluso estando lejos.
+</li>
+
+<li>
+♡ Cada conversación contigo, hasta las más simples.
+</li>
+
+<li>
+♡ La confianza y el cariño que hemos construido.
+</li>
+
+<li>
+♡ Que seas tú, con todas tus pequeñas y grandes cosas.
+</li>
+
+<li>
+♡ La sensación de saber que hay alguien esperándome
+al otro lado de la pantalla.
+</li>
+
+</ul>
+
+<button onclick="next()">
+Hay más… ✨
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CUANDO ESTEMOS JUNTOS -->
+
+<section class="page">
+
+<div class="card">
+
+<h2>
+Si pudiera estar contigo… 🫂
+</h2>
+
+<p class="quote">
+“Primero te daría un abrazo de esos que hacen
+que el mundo se quede en silencio.”
 </p>
 
 <p>
-Porque si eres tú, la distancia se vuelve
-solamente un pequeño obstáculo entre nosotros.
-</p>
-
-</div>
-
-<div class="seccion">
-
-<h2>🫂 Algún día...</h2>
-
-<p>
-Algún día ya no tendremos que despedirnos
-por una pantalla.
+Después probablemente no querría soltarte.
+Querría caminar contigo, reírnos por cualquier
+tontería, mirarte y pensar:
+“por fin estás aquí”.
 </p>
 
 <p>
-Algún día podremos vernos frente a frente,
-abrazarnos muchísimo y recuperar todos
-esos abrazos que la distancia nos ha quitado.
+La distancia solo me hace imaginar con más ilusión
+el día en que podamos hacer realidad todos esos
+momentos.
+</p>
+
+<button onclick="next()">
+Nuestro futuro 💕
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FUTURO -->
+
+<section class="page">
+
+<div class="card">
+
+<h2>
+Lo que sueño contigo 🌙
+</h2>
+
+<p>
+Quiero que tengamos muchos más meses que celebrar.
+Quiero recuerdos, fotografías, abrazos, citas,
+viajes, risas y días normales que se vuelvan
+especiales solamente porque estamos juntos.
 </p>
 
 <p>
-Y cuando llegue ese día, quiero acordarme
-de todo lo que tuvimos que esperar para poder
-estar juntos.
+Quiero conocer tus lugares favoritos, descubrir
+otros contigo y algún día mirar atrás y decir:
+“todo empezó a distancia y mira hasta dónde llegamos”.
 </p>
+
+<button onclick="next()">
+Una promesa ♡
+</button>
 
 </div>
 
-<div class="seccion">
+</section>
 
-<h2>💕 Lo que quiero que recuerdes</h2>
+
+<!-- PROMESA -->
+
+<section class="page">
+
+<div class="card">
+
+<h2>
+Una pequeña promesa 🤍
+</h2>
 
 <p>
-Quiero que recuerdes que te quiero muchísimo.
+Prometo seguir cuidando lo nuestro, escuchar tu corazón
+y valorar cada momento que compartimos.
 </p>
 
 <p>
-Que eres importante para mí.
-Que me haces sonreír.
-Que me encanta tenerte en mi vida.
-Y que, aunque no pueda estar físicamente
-a tu lado todos los días, mi cariño por ti
-siempre está presente.
+No sé exactamente qué nos traerá el futuro,
+pero sí sé que quiero seguir conociéndote,
+queriéndote y construyendo contigo,
+paso a paso.
 </p>
 
-</div>
+<p class="quote">
+“Que estos dos meses sean apenas el comienzo
+de una historia muchísimo más larga.”
+</p>
 
-<div class="frase">
-
-“Quizá hoy nos separen kilómetros,
-pero algún día esos kilómetros
-serán solamente parte de nuestra historia.” 💗
-
-</div>
-
-<div class="final">
-
-Heber, te quiero muchísimo. 💗
-
-<br><br>
-
-Siempre tú, Bae. 🥹❤️
-
-<br><br>
-
-19 de junio 💕
-</div>
+<button onclick="next()">
+Casi llegamos… 🥹
+</button>
 
 </div>
 
+</section>
+
+
+<!-- AGRADECIMIENTO -->
+
+<section class="page">
+
+<div class="card">
+
+<h2>
+Antes de terminar… 🌸
+</h2>
+
+<p>
+Gracias por llegar a mi vida.
+Gracias por cada mensaje, cada llamada,
+cada “te quiero”, cada risa y cada instante
+que has compartido conmigo.
+</p>
+
+<p>
+Gracias por hacer que la distancia
+no se sienta tan enorme.
+</p>
+
+<p class="final">
+Te quiero muchísimo. ♡
+</p>
+
+<button onclick="next()">
+Tengo una pregunta para ti 💗
+</button>
+
 </div>
+
+</section>
+
+
+<!-- PREGUNTA -->
+
+<section class="page">
+
+<div class="card">
+
+<div class="heart">
+💗
 </div>
+
+<h2>
+¿Seguimos escribiendo nuestra historia?
+</h2>
+
+<p class="final">
+Yo quiero que sigamos escribiéndola,
+página por página, momento por momento.
+</p>
+
+<button onclick="yesAnswer()">
+Sí, quiero ❤️
+</button>
+
+<button class="soft" onclick="next()">
+Obviamente sí 🥹
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="page">
+
+<div class="card">
+
+<div class="heart">
+💖
+</div>
+
+<h1>
+Te amo
+</h1>
+
+<p class="final">
+Feliz segundo mes, mi amor.
+</p>
+
+<p>
+Gracias por ser parte de mi vida.
+Esto es solamente una pequeña muestra
+de todo lo que siento por ti.
+</p>
+
+<p class="quote">
+“Y si pudiera volver a elegir,
+volvería a elegirte a ti.”
+</p>
+
+<p class="counter">
+19 de agosto ♡
+</p>
+
+<div class="heart">
+♡
+</div>
+
+</div>
+
+</section>
+
 
 <script>
 
-function mostrarCarta() {
+let currentPage = 0;
 
-    document.getElementById("cartaCompleta").style.display = "block";
+const pages = document.querySelectorAll(".page");
 
-    setTimeout(function() {
-        document.getElementById("cartaCompleta").scrollIntoView({
-            behavior: "smooth"
-        });
-    }, 100);
+const music = document.getElementById("music");
 
-}
+const musicButton = document.getElementById("musicButton");
 
-function activarCancion() {
 
-    const musica = document.getElementById("musica");
+function next(){
 
-    musica.src =
-    "https://www.youtube.com/embed/nKpTSuzNQxE?autoplay=1&loop=1&playlist=nKpTSuzNQxE";
+  if(currentPage < pages.length - 1){
 
-    document.getElementById("activarMusica").style.display = "none";
+    pages[currentPage].classList.remove("active");
 
-}
+    currentPage++;
 
-function crearCorazon() {
+    pages[currentPage].classList.add("active");
 
-    const corazon = document.createElement("div");
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
 
-    corazon.className = "corazones";
-    corazon.innerHTML = "💗";
-
-    corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.animationDuration =
-    (4 + Math.random() * 4) + "s";
-
-    corazon.style.fontSize =
-    (15 + Math.random() * 20) + "px";
-
-    document.body.appendChild(corazon);
-
-    setTimeout(function() {
-        corazon.remove();
-    }, 8000);
+  }
 
 }
 
-setInterval(crearCorazon, 700);
+
+function startEverything(){
+
+  music.play()
+    .then(() => {
+
+      musicButton.innerHTML = "🔊 Música";
+
+    })
+    .catch(() => {
+
+      musicButton.innerHTML = "🎵 Activar música";
+
+    });
+
+  createHearts();
+
+}
+
+
+function toggleMusic(){
+
+  if(music.paused){
+
+    music.play()
+    .then(() => {
+      musicButton.innerHTML = "🔊 Música";
+    })
+    .catch(() => {
+      musicButton.innerHTML = "🎵 Activar música";
+    });
+
+  }else{
+
+    music.pause();
+
+    musicButton.innerHTML = "🔇 Música";
+
+  }
+
+}
+
+
+function yesAnswer(){
+
+  createManyHearts();
+
+  next();
+
+}
+
+
+function createHearts(){
+
+  setInterval(() => {
+
+    const heart = document.createElement("span");
+
+    const hearts = [
+      "♡",
+      "♥",
+      "💗",
+      "💕",
+      "💖",
+      "💘"
+    ];
+
+    heart.innerHTML =
+      hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left =
+      Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+      (4 + Math.random() * 5) + "s";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => {
+
+      heart.remove();
+
+    },9000);
+
+  },700);
+
+}
+
+
+function createManyHearts(){
+
+  for(let i = 0; i < 35; i++){
+
+    const heart = document.createElement("span");
+
+    const hearts = [
+      "♡",
+      "♥",
+      "💗",
+      "💕",
+      "💖",
+      "💘"
+    ];
+
+    heart.innerHTML =
+      hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left =
+      Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+      (2 + Math.random() * 3) + "s";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => {
+
+      heart.remove();
+
+    },5000);
+
+  }
+
+}
+
+
+/* Intento de reproducción automática */
+
+window.addEventListener("load", () => {
+
+  music.play()
+    .then(() => {
+
+      musicButton.innerHTML = "🔊 Música";
+
+    })
+    .catch(() => {
+
+      musicButton.innerHTML = "🎵 Activar música";
+
+    });
+
+});
 
 </script>
 
